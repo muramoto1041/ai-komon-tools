@@ -1,0 +1,15 @@
+{
+  "name": "ai-komon-tools",
+  "description": "業務アプリ（桐・Access・Excel など）の保守・検証を助ける Claude Code プラグイン集",
+  "owner": {
+    "name": "muramoto1041",
+    "url": "https://github.com/muramoto1041"
+  },
+  "plugins": [
+    {
+      "name": "kiri-verify",
+      "source": "./plugins/kiri-verify",
+      "description": "桐の一括処理・イベント処理ファイルを、桐オンラインヘルプのコマンド書式と照合して検証する"
+    }
+  ]
+}

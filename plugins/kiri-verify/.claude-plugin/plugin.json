@@ -1,0 +1,13 @@
+{
+  "name": "kiri-verify",
+  "version": "1.0.0",
+  "description": "桐（K3 日本語データベース）の一括処理・イベント処理ファイル（Shift-JIS の *.txt）を、桐オンラインヘルプのコマンド書式と照合して検証する",
+  "author": {
+    "name": "muramoto1041",
+    "url": "https://github.com/muramoto1041"
+  },
+  "homepage": "https://github.com/muramoto1041/ai-komon-tools",
+  "repository": "https://github.com/muramoto1041/ai-komon-tools",
+  "license": "MIT",
+  "keywords": ["kiri", "桐", "一括処理", "verification"]
+}
