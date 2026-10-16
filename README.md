@@ -2,10 +2,12 @@
 
 業務アプリ（桐・Access・Excel など）の保守や検証を助ける、[Claude Code](https://code.claude.com/) 用のプラグインと VS Code 拡張機能の集まりです。
 
-| 名前 | 種類 | 内容 |
-| --- | --- | --- |
-| [kiri-verify](#kiri-verify) | Claude Code プラグイン | 桐の一括処理・イベント処理を、桐オンラインヘルプと照合して検証する |
-| [Kiri Syntax](#kiri-syntax) | VS Code 拡張機能 | 桐の一括処理・イベント処理を色分け表示する |
+| 名前 | 種類 | 内容 | 入れ方 |
+| --- | --- | --- | --- |
+| [kiri-verify](#kiri-verify) | Claude Code プラグイン | 桐の一括処理・イベント処理を、桐オンラインヘルプと照合して検証する | Claude Code のコマンド（[下記](#インストールclaude-code-プラグイン)） |
+| [Kiri Syntax](#kiri-syntax) | VS Code 拡張機能 | 桐の一括処理・イベント処理を色分け表示する | vsix ファイルを VS Code に入れる（[下記](#kiri-syntax)） |
+
+2つは別々に入れます。どちらか一方だけでも使えます。
 
 ## インストール（Claude Code プラグイン）
 
@@ -16,7 +18,16 @@ Claude Code で次の2行を実行します。
 /plugin install kiri-verify@ai-komon-tools
 ```
 
-更新が出たら `/plugin marketplace update ai-komon-tools` で取り込めます。
+2行目を実行すると詳細画面が開くので、入れる範囲（自分だけ／このリポジトリ など）を選ぶとインストールされます。
+
+この手順で入るのは kiri-verify だけです。Kiri Syntax は下の「[VS Code 拡張機能](#vs-code-拡張機能)」の手順で入れてください。
+
+### 更新
+
+- **手動で更新する**：Claude Code で `/plugin` を開き、「Installed」タブで kiri-verify を選んで「Update now」を選びます。シェルからは `claude plugin update kiri-verify@ai-komon-tools` でも更新できます。
+- **自動で更新する**：このマーケットプレイスは初期状態では自動更新されません。`/plugin` の「Marketplaces」タブで ai-komon-tools を選び、「Enable auto-update」を選ぶと、次から Claude Code の起動時に自動で更新されます。
+
+更新を取り込んだあとは `/reload-plugins` を実行するか、Claude Code を開き直すと新しい版が使われます。
 
 ## 収録プラグイン
 
