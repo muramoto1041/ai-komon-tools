@@ -1,10 +1,10 @@
 # ai-komon-tools
 
-業務アプリ（桐・Access・Excel など）の保守や検証を助ける、[Claude Code](https://code.claude.com/) 用のプラグインと VS Code 拡張機能の集まりです。
+業務アプリ（桐・Access・Excel など）の保守や検証を助ける、[Claude Code](https://code.claude.com/) 用のプラグインと VS Code 拡張機能の集まりです。kiri-verify は、GitHub Copilot など Claude Code 以外の AI ツールでも使えます。
 
 | 名前 | 種類 | 内容 | 入れ方 |
 | --- | --- | --- | --- |
-| [kiri-verify](#kiri-verify) | Claude Code プラグイン | 桐の一括処理・イベント処理を、桐オンラインヘルプと照合して検証する | Claude Code のコマンド（[下記](#インストールclaude-code-プラグイン)） |
+| [kiri-verify](#kiri-verify) | Claude Code プラグイン（Agent Skills） | 桐の一括処理・イベント処理を、桐オンラインヘルプと照合して検証する | Claude Code のコマンド（[下記](#インストールclaude-code-プラグイン)）、または ZIP を展開して置く（[下記](#インストールgithub-copilot-など)） |
 | [Kiri Syntax](#kiri-syntax) | VS Code 拡張機能 | 桐の一括処理・イベント処理を色分け表示する | vsix ファイルを VS Code に入れる（[下記](#kiri-syntax)） |
 
 2つは別々に入れます。どちらか一方だけでも使えます。
@@ -28,6 +28,31 @@ Claude Code で次の2行を実行します。
 - **自動で更新する**：このマーケットプレイスは初期状態では自動更新されません。`/plugin` の「Marketplaces」タブで ai-komon-tools を選び、「Enable auto-update」を選ぶと、次から Claude Code の起動時に自動で更新されます。
 
 更新を取り込んだあとは `/reload-plugins` を実行するか、Claude Code を開き直すと新しい版が使われます。
+
+## インストール（GitHub Copilot など）
+
+kiri-verify の本体は、Agent Skills という共通の形式で書いています。そのため、Claude Code を使っていなくても、Agent Skills に対応した AI ツールで使えます。
+
+1. [kiri-verify.zip](https://github.com/muramoto1041/ai-komon-tools/raw/main/dist/kiri-verify.zip) をダウンロードします。
+2. 使うツールに合わせて、次のように入れます。
+
+| 使うツール | 入れ方 |
+| --- | --- |
+| VS Code の GitHub Copilot | ZIP を展開し、中の `kiri-verify` フォルダを `%USERPROFILE%\.copilot\skills\` の下に置きます（`%USERPROFILE%\.copilot\skills\kiri-verify\SKILL.md` となるように）。フォルダがなければ作ります。置いたあと、VS Code のウィンドウを再読み込みします。 |
+| Claude デスクトップアプリ・claude.ai | ZIP は展開せず、設定のスキルの画面からアップロードします。 |
+| そのほかの Agent Skills 対応ツール | ZIP を展開し、`kiri-verify` フォルダをツールの説明書にある skills フォルダに置きます。 |
+
+**使い方**：桐のファイルがあるフォルダを開き、チャットを**エージェントモード**（AI がファイルを読み、ターミナルでコマンドを実行し、Web ページを取得できるモード）にして、「この *.txt を検証して」と頼みます。質問だけのモード（Copilot の「Ask」など）では、スクリプトを実行できないため動きません。
+
+**更新**：自動では更新されません。新しい ZIP をダウンロードし、置いた `kiri-verify` フォルダを丸ごと置き換えます。
+
+**注意**
+
+- Claude Code と同じく、Python 3 が必要です。PC によっては `python` ではなく `py` で動きます。
+- 桐オンラインヘルプ（kthree.co.jp）のページを取得できる環境が必要です。取得できないと、ヘルプとの照合ができません。
+- 報告の細かさや手順の守り方は、ツールで使う AI モデルによって変わります。
+
+（管理者向け）スキルを直したら、`python scripts/make-skill-zip.py` で `dist/kiri-verify.zip` を作り直してから commit します。
 
 ## 収録プラグイン
 
