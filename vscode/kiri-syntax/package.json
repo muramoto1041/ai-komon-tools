@@ -1,6 +1,6 @@
 {
-  "name": "kiri-batch",
-  "displayName": "桐 一括処理 (Kiri Batch)",
+  "name": "kiri-syntax",
+  "displayName": "桐 一括処理 (Kiri Syntax)",
   "description": "日本語データベース「桐」の一括処理ファイルを色分け表示します",
   "version": "0.1.1",
   "publisher": "muramoto",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/muramoto1041/ai-komon-tools.git",
-    "directory": "vscode/kiri-batch"
+    "directory": "vscode/kiri-syntax"
   },
   "engines": {
     "vscode": "^1.80.0"
@@ -25,7 +25,7 @@
         "id": "kiri",
         "aliases": [
           "桐 一括処理",
-          "Kiri Batch"
+          "Kiri Syntax"
         ],
         "filenamePatterns": [
           "*_kex.txt",

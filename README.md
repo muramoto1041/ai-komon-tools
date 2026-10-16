@@ -5,7 +5,7 @@
 | 名前 | 種類 | 内容 |
 | --- | --- | --- |
 | [kiri-verify](#kiri-verify) | Claude Code プラグイン | 桐の一括処理・イベント処理を、桐オンラインヘルプと照合して検証する |
-| [Kiri Batch](#kiri-batch) | VS Code 拡張機能 | 桐の一括処理・イベント処理を色分け表示する |
+| [Kiri Syntax](#kiri-syntax) | VS Code 拡張機能 | 桐の一括処理・イベント処理を色分け表示する |
 
 ## インストール（Claude Code プラグイン）
 
@@ -45,17 +45,17 @@ Claude Code で次の2行を実行します。
 
 ## VS Code 拡張機能
 
-### Kiri Batch
+### Kiri Syntax
 
-「桐 一括処理 (Kiri Batch)」は、桐の一括処理（`.cmx`）・イベント処理（`.kex`）を書き出したテキストファイルを、VS Code で色分け表示する拡張機能です。命令・制御構文・変数（`&`）・関数（`#`）・項目（`[ ]`）・文字列・コメントを区別し、`IF`〜`END` や `手続き定義開始`〜`手続き定義終了` を折りたためます。
+「桐 一括処理 (Kiri Syntax)」は、桐の一括処理（`.cmx`）・イベント処理（`.kex`）を書き出したテキストファイルを、VS Code で色分け表示する拡張機能です。命令・制御構文・変数（`&`）・関数（`#`）・項目（`[ ]`）・文字列・コメントを区別し、`IF`〜`END` や `手続き定義開始`〜`手続き定義終了` を折りたためます。
 
-**インストール**：[kiri-batch-0.1.1.vsix](vscode/kiri-batch/kiri-batch-0.1.1.vsix) をダウンロードし、VS Code の拡張機能ビュー（`Ctrl+Shift+X`）の「…」→「VSIX からのインストール...」で入れます。詳しくは[インストール手順](vscode/kiri-batch/インストール手順.md)を見てください。
+**インストール**：[kiri-syntax-0.1.1.vsix](vscode/kiri-syntax/kiri-syntax-0.1.1.vsix) をダウンロードし、VS Code の拡張機能ビュー（`Ctrl+Shift+X`）の「…」→「VSIX からのインストール...」で入れます。詳しくは[インストール手順](vscode/kiri-syntax/インストール手順.md)を見てください。
 
 **前提**
 
 - 名前が `_cmx.txt`・`_kex.txt` で終わるファイルは、設定なしで自動的に色が付き、Shift-JIS で開きます。
 - それ以外の名前のファイルは、画面右下の言語の表示から「桐 一括処理」に切り替えます。
-- ソースは [vscode/kiri-batch](vscode/kiri-batch/) にあります。文法は `scripts/build-grammar.js` で生成します。
+- ソースは [vscode/kiri-syntax](vscode/kiri-syntax/) にあります。文法は `scripts/build-grammar.js` で生成します。
 
 ## 注意
 
