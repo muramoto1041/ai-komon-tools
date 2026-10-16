@@ -1,0 +1,250 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "桐 一括処理",
+  "scopeName": "source.kiri",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#declaration"
+    },
+    {
+      "include": "#condition"
+    },
+    {
+      "include": "#procedure-definition"
+    },
+    {
+      "include": "#label"
+    },
+    {
+      "include": "#call"
+    },
+    {
+      "include": "#control"
+    },
+    {
+      "include": "#command"
+    },
+    {
+      "include": "#expressions"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.asterisk.kiri",
+      "match": "^[\\s　]*[*＊].*$"
+    },
+    "declaration": {
+      "begin": "^([\\s　]*)(変数宣言)(?![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])",
+      "beginCaptures": {
+        "2": {
+          "name": "storage.type.declaration.kiri"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "name": "storage.modifier.kiri",
+          "match": "(?:共通|共有|固有|局所)(?=[\\s　]*[,，])"
+        },
+        {
+          "name": "storage.type.kiri",
+          "match": "(?:長整数|整数|数値|文字列|文字|日時|通貨|実数|論理|オブジェクト)(?=[\\s　]*[{｛])"
+        },
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "condition": {
+      "begin": "^([\\s　]*)(条件)[\\s　]*(?=[(（])",
+      "beginCaptures": {
+        "2": {
+          "name": "keyword.control.kiri"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "match": "(?<=[)）])([\\s　]*)(手続き実行|分岐)[\\s　]+([^\\s　&＆#＃,，]+)",
+          "captures": {
+            "2": {
+              "name": "keyword.control.kiri"
+            },
+            "3": {
+              "name": "entity.name.function.kiri"
+            }
+          }
+        },
+        {
+          "match": "(?<=[)）])([\\s　]*)((?:手続き定義終了|手続き終了|ケース開始|ケース終了|ケース中止|ケース|繰り返し終了|繰り返し中止|繰り返し|一括処理実行|エラー処理|(?i:if|else|end)))(?![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])",
+          "captures": {
+            "2": {
+              "name": "keyword.control.kiri"
+            }
+          }
+        },
+        {
+          "match": "(?<=[)）])([\\s　]*)([^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？]+)",
+          "captures": {
+            "2": {
+              "name": "keyword.other.command.kiri"
+            }
+          }
+        },
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "procedure-definition": {
+      "match": "^([\\s　]*)(手続き定義開始)[\\s　]*([^\\s　(（]+)",
+      "captures": {
+        "2": {
+          "name": "keyword.control.kiri"
+        },
+        "3": {
+          "name": "entity.name.function.kiri"
+        }
+      }
+    },
+    "label": {
+      "match": "^([\\s　]*)(名札)[\\s　]+([^\\s　]+)",
+      "captures": {
+        "2": {
+          "name": "keyword.control.kiri"
+        },
+        "3": {
+          "name": "entity.name.function.label.kiri"
+        }
+      }
+    },
+    "call": {
+      "match": "^([\\s　]*)(手続き実行|分岐)[\\s　]+([^\\s　&＆#＃,，]+)",
+      "captures": {
+        "2": {
+          "name": "keyword.control.kiri"
+        },
+        "3": {
+          "name": "entity.name.function.kiri"
+        }
+      }
+    },
+    "control": {
+      "match": "^([\\s　]*)((?:手続き定義終了|手続き終了|ケース開始|ケース終了|ケース中止|ケース|繰り返し終了|繰り返し中止|繰り返し|一括処理実行|エラー処理|(?i:if|else|end)))(?![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])",
+      "captures": {
+        "2": {
+          "name": "keyword.control.kiri"
+        }
+      }
+    },
+    "command": {
+      "match": "^([\\s　]*)([^\\s　&＆#＃*＊\\[［\"”“(（)）,，=＝<>＜＞{｛}｝]+)",
+      "captures": {
+        "2": {
+          "name": "keyword.other.command.kiri"
+        }
+      }
+    },
+    "expressions": {
+      "patterns": [
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#field"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#logical"
+        },
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#parameter"
+        },
+        {
+          "include": "#parens"
+        },
+        {
+          "include": "#operator"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.kiri",
+      "begin": "[\"”“]",
+      "end": "[\"”“]|$",
+      "patterns": [
+        {
+          "name": "constant.character.escape.kiri",
+          "match": "\\\\n"
+        }
+      ]
+    },
+    "field": {
+      "name": "entity.name.type.field.kiri",
+      "begin": "[\\[［]",
+      "end": "[\\]］]|$",
+      "patterns": [
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#number"
+        }
+      ]
+    },
+    "variable": {
+      "name": "variable.other.kiri",
+      "match": "[&＆][^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？]+"
+    },
+    "function": {
+      "name": "support.function.kiri",
+      "match": "[#＃][^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？]+"
+    },
+    "logical": {
+      "name": "keyword.operator.logical.kiri",
+      "match": "(?i)[.．](?:and|or|not|xor)(?![a-z])"
+    },
+    "constant": {
+      "name": "constant.language.kiri",
+      "match": "(?<=[=＝])(?:する|しない|許可|禁止)(?![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])"
+    },
+    "number": {
+      "name": "constant.numeric.kiri",
+      "match": "(?<![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])[0-9０-９]+(?:[.．][0-9０-９]+)?(?![^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？])"
+    },
+    "parameter": {
+      "name": "entity.other.attribute-name.kiri",
+      "match": "[^\\s　,，=＝<>＜＞+＋\\-－*＊/／(（)）{｛}｝\\[［\\]］\"”“.:：;；!！?？]+(?=[\\s　]*[=＝])"
+    },
+    "parens": {
+      "begin": "[(（]",
+      "end": "[)）]|$",
+      "patterns": [
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "operator": {
+      "name": "keyword.operator.kiri",
+      "match": "[=＝<>＜＞+＋\\-－*＊/／]"
+    }
+  }
+}

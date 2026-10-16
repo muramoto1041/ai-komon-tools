@@ -1,0 +1,52 @@
+{
+  "name": "kiri-batch",
+  "displayName": "桐 一括処理 (Kiri Batch)",
+  "description": "日本語データベース「桐」の一括処理ファイルを色分け表示します",
+  "version": "0.1.1",
+  "publisher": "muramoto",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muramoto1041/ai-komon-tools.git",
+    "directory": "vscode/kiri-batch"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "scripts": {
+    "build": "node scripts/build-grammar.js"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "kiri",
+        "aliases": [
+          "桐 一括処理",
+          "Kiri Batch"
+        ],
+        "filenamePatterns": [
+          "*_kex.txt",
+          "*_cmx.txt"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "kiri",
+        "scopeName": "source.kiri",
+        "path": "./syntaxes/kiri.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[kiri]": {
+        "files.encoding": "shiftjis",
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false
+      }
+    }
+  }
+}
